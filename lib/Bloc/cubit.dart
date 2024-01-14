@@ -41,17 +41,17 @@ class StoreCubit extends Cubit<StoreStates> {
       String? img,
       int? id}) async {
     emit(StoreUpdatesLoading());
+
     await DioHelper.putData(url: '$allPRODUCTS/$id', data: {
       'title': title ?? productModel!.title,
       'description': desc ?? productModel!.dec,
       'price': price ?? productModel!.price,
       'image': img,
       'category': category,
-      'id': id,
     }).then((value) {
       print(value.data);
-      productModel = ProductModel.fromJson(value.data);
-      emit(StoreUpdateSuccess(productModel!));
+
+      emit(StoreUpdateSuccess(products, productModel!));
     }).catchError((error) {
       print(error.toString());
       emit(StoreUpdatesErrorState(error: error.toString()));

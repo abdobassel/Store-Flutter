@@ -14,8 +14,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<ProductModel> products = [];
     return BlocConsumer<StoreCubit, StoreStates>(
-        listener: (context, state) => () {},
+        listener: (context, state) => () {
+              if (state is StoreUpdateSuccess) {}
+            },
         builder: (context, state) {
           var cubit = StoreCubit.get(context);
           var products = StoreCubit.get(context).products;

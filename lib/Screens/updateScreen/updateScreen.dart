@@ -10,9 +10,7 @@ import 'package:store_app_flutter/models/product_model.dart';
 class UpdatePage extends StatelessWidget {
   UpdatePage({
     super.key,
-    required this.product,
   });
-  final ProductModel product;
 
   static String id = 'updateScreen';
   var controllerTitle = TextEditingController();

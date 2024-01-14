@@ -15,9 +15,9 @@ void main() async {
   DioHelper.init();
   await cacheHelper.init();
 
-  bool isdark = cacheHelper.getData(key: 'isDark');
+  bool? isdark = cacheHelper.getData(key: 'isDark');
   runApp(Store(
-    isdark,
+    isdark ?? true,
   ));
 }
 
@@ -44,9 +44,7 @@ class Store extends StatelessWidget {
               debugShowCheckedModeBanner: false,
               routes: {
                 HomePage.id: (context) => HomePage(),
-                UpdatePage.id: (context) => UpdatePage(
-                      product: ProductModel(),
-                    ),
+                UpdatePage.id: (context) => UpdatePage(),
               },
               initialRoute: HomePage.id);
         },
