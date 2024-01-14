@@ -1,13 +1,14 @@
 import 'package:store_app_flutter/Bloc/states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app_flutter/EndPoints/endpints.dart';
+import 'package:store_app_flutter/Helpers/Local/cache_helper/cache_helper.dart';
 import 'package:store_app_flutter/Helpers/Network/dioHelper.dart';
 import 'package:store_app_flutter/models/product_model.dart';
 
 class StoreCubit extends Cubit<StoreStates> {
-  StoreCubit(super.initialState);
+  StoreCubit(StoreInitialState storeInitialState) : super(StoreInitialState());
 
-  static StoreCubit get(context) => BlocProvider.of(context);
+  static StoreCubit get(context) => BlocProvider.of<StoreCubit>(context);
 
   ProductModel? productModel;
   List<ProductModel> products = [];
@@ -55,5 +56,21 @@ class StoreCubit extends Cubit<StoreStates> {
       print(error.toString());
       emit(StoreUpdatesErrorState(error: error.toString()));
     });
+  }
+
+  bool isDark = false;
+  void changeMode({bool? fromShared}) async {
+    if (fromShared != null) {
+      isDark = fromShared;
+      emit(StoreChangeModeState());
+    } else {
+      isDark = !isDark;
+
+      await cacheHelper.putDataMode(key: 'isDark', value: isDark).then((value) {
+        emit(StoreChangeModeState());
+      });
+    }
+
+    print(isDark);
   }
 }

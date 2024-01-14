@@ -12,6 +12,8 @@ class StoreGetProductsErrorState extends StoreStates {
   StoreGetProductsErrorState({required this.error});
 }
 
+class StoreChangeModeState extends StoreStates {}
+
 class StoreGetProductsLoading extends StoreStates {}
 
 class StoreUpdatesErrorState extends StoreStates {

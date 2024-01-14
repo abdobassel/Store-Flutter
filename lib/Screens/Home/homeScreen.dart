@@ -21,19 +21,17 @@ class HomePage extends StatelessWidget {
           var products = StoreCubit.get(context).products;
 
           return Scaffold(
-              backgroundColor: Colors.white,
               appBar: AppBar(
                   centerTitle: true,
                   leading: Icon(Icons.arrow_back),
                   actions: [
-                    TextButton(
-                      child:
-                          IconButton(onPressed: () {}, icon: Icon(Icons.shop)),
-                      onPressed: () {},
-                    )
+                    IconButton(onPressed: () {}, icon: Icon(Icons.shop)),
+                    IconButton(
+                        onPressed: () {
+                          cubit.changeMode();
+                        },
+                        icon: Icon(Icons.brightness_4_rounded)),
                   ],
-                  elevation: 0,
-                  backgroundColor: Colors.white,
                   title: const Text('Home')),
               body: Conditional.single(
                 conditionBuilder: (context) => products.isNotEmpty,
