@@ -39,10 +39,7 @@ class UpdatePage extends StatelessWidget {
           var cubit = StoreCubit.get(context);
           var products = StoreCubit.get(context).products;
           return Scaffold(
-            appBar: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.white,
-                title: Text('Update')),
+            appBar: AppBar(title: Text('Update')),
             body: ListView(
               children: [
                 Padding(
