@@ -39,6 +39,13 @@ ThemeData lightTheme = ThemeData(
 ThemeData darkTheme = ThemeData(
   scaffoldBackgroundColor: Color(0xff313737),
   useMaterial3: false,
+  cardTheme: CardTheme(color: Color(0xff464f4f)),
+  hintColor: Colors.white,
+  inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(color: Colors.white),
+      labelStyle: TextStyle(color: Colors.white),
+      fillColor: Colors.white),
+  indicatorColor: Colors.white,
   appBarTheme: AppBarTheme(
       scrolledUnderElevation: 0.0,
       iconTheme: IconThemeData(color: Colors.white),
