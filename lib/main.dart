@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:store_app_flutter/Bloc/cubit.dart';
+import 'package:store_app_flutter/Bloc/states.dart';
+import 'package:store_app_flutter/Helpers/Network/dioHelper.dart';
 import 'package:store_app_flutter/Screens/Home/homeScreen.dart';
 import 'package:store_app_flutter/Screens/updateScreen/updateScreen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:store_app_flutter/models/product_model.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  DioHelper.init();
   runApp(const Store());
 }
 
@@ -11,12 +18,17 @@ class Store extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          HomePage.id: (context) => const HomePage(),
-          UpdatePage.id: (context) => const UpdatePage(),
-        },
-        initialRoute: HomePage.id);
+    return BlocProvider(
+      create: (context) => StoreCubit(StoreInitialState())..getProducts(),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          routes: {
+            HomePage.id: (context) => HomePage(),
+            UpdatePage.id: (context) => UpdatePage(
+                  product: ProductModel(),
+                ),
+          },
+          initialRoute: HomePage.id),
+    );
   }
 }

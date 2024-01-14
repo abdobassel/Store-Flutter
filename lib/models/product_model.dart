@@ -6,6 +6,7 @@ class ProductModel {
   String? img;
   String? category;
   RatingModel? rating;
+
   ProductModel(
       {this.category,
       this.id,
@@ -18,11 +19,12 @@ class ProductModel {
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    price = json['price'];
+    price = json['price'].toString();
     category = json['category'];
     img = json['image'];
     dec = json['description'];
-    rating = RatingModel.fromJson(json['rating']);
+    rating =
+        json['rating'] != null ? RatingModel.fromJson(json['rating']) : null;
   }
 
   Map<String, dynamic> toMap() {
@@ -39,12 +41,11 @@ class ProductModel {
 }
 
 class RatingModel {
-  double? rate;
-  int? count;
+  dynamic rate;
+  dynamic count;
 
-  RatingModel({this.count, this.rate});
   RatingModel.fromJson(Map<String, dynamic> json) {
-    rate = json['id'];
+    rate = json['rate'];
     count = json['count'];
   }
 }
