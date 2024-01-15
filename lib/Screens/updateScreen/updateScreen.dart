@@ -28,14 +28,16 @@ class UpdatePage extends StatelessWidget {
     return BlocConsumer<StoreCubit, StoreStates>(
         listener: (context, state) => () {
               if (state is StoreUpdateSuccess) {
-                controllerTitle.text = state.productModel.title!;
-                controllerdesc.text = state.productModel.dec!;
-                controllerprice.text = state.productModel.price!;
+                product = state.productModel;
+                print(state.productModel.title);
+                controllerTitle.text = product.title!;
+                controllerdesc.text = product.dec!;
+                controllerprice.text = product.price!;
               }
             },
         builder: (context, state) {
           var cubit = StoreCubit.get(context);
-          var products = StoreCubit.get(context).products;
+
           return Scaffold(
             appBar: AppBar(title: Text('Update')),
             body: ListView(
@@ -97,10 +99,8 @@ class UpdatePage extends StatelessWidget {
                               if (formKey.currentState!.validate()) {
                                 cubit.updateProduct(
                                   title: controllerTitle.text,
-                                  category: product.category,
                                   price: controllerprice.text,
                                   desc: controllerdesc.text,
-                                  img: product.img,
                                   id: product.id,
                                 );
                               }

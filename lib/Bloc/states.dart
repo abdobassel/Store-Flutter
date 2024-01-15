@@ -25,10 +25,9 @@ class StoreUpdatesErrorState extends StoreStates {
 class StoreUpdatesLoading extends StoreStates {}
 
 class StoreUpdateSuccess extends StoreStates {
-  final List<ProductModel> products;
-
-  StoreUpdateSuccess(this.products, this.productModel);
   final ProductModel productModel;
+
+  StoreUpdateSuccess(this.productModel);
 }
 
 class LikeSuccessState extends StoreStates {}

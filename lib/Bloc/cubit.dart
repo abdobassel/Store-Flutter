@@ -19,7 +19,7 @@ class StoreCubit extends Cubit<StoreStates> {
       products = [];
       List<dynamic> productsData = value.data;
 
-      print(value.data);
+//      print(value.data);
 
       productsData.forEach((e) {
         products.add(ProductModel.fromJson(e));
@@ -46,12 +46,11 @@ class StoreCubit extends Cubit<StoreStates> {
       'title': title ?? productModel!.title,
       'description': desc ?? productModel!.dec,
       'price': price ?? productModel!.price,
-      'image': img,
-      'category': category,
+      'image': productModel?.img ?? '',
+      'category': productModel?.category ?? '',
     }).then((value) {
-      print(value.data);
-
-      emit(StoreUpdateSuccess(products, productModel!));
+      emit(StoreUpdateSuccess(productModel!));
+      getProducts();
     }).catchError((error) {
       print(error.toString());
       emit(StoreUpdatesErrorState(error: error.toString()));

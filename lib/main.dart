@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:store_app_flutter/Bloc/bloc_observer.dart';
 import 'package:store_app_flutter/Bloc/cubit.dart';
 import 'package:store_app_flutter/Bloc/states.dart';
 import 'package:store_app_flutter/Helpers/Local/cache_helper/cache_helper.dart';
 import 'package:store_app_flutter/Helpers/Network/dioHelper.dart';
 import 'package:store_app_flutter/Screens/Home/homeScreen.dart';
+import 'package:store_app_flutter/Screens/on_boarding/model.dart';
+import 'package:store_app_flutter/Screens/on_boarding/on_boarding_screen.dart';
 import 'package:store_app_flutter/Screens/updateScreen/updateScreen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:store_app_flutter/constants/themes.dart';
@@ -13,6 +16,7 @@ import 'package:store_app_flutter/models/product_model.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
+  Bloc.observer = MyBlocObserver();
   await cacheHelper.init();
 
   bool? isdark = cacheHelper.getData(key: 'isDark');
@@ -45,8 +49,9 @@ class Store extends StatelessWidget {
               routes: {
                 HomePage.id: (context) => HomePage(),
                 UpdatePage.id: (context) => UpdatePage(),
+                OnBoardingScreen.id: (context) => OnBoardingScreen(),
               },
-              initialRoute: HomePage.id);
+              initialRoute: OnBoardingScreen.id);
         },
       ),
     );

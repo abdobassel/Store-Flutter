@@ -14,7 +14,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<ProductModel> products = [];
     return BlocConsumer<StoreCubit, StoreStates>(
         listener: (context, state) => () {
               if (state is StoreUpdateSuccess) {}

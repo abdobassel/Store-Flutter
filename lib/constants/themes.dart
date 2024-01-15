@@ -37,6 +37,8 @@ ThemeData lightTheme = ThemeData(
 );
 
 ThemeData darkTheme = ThemeData(
+  floatingActionButtonTheme:
+      FloatingActionButtonThemeData(backgroundColor: Colors.white),
   scaffoldBackgroundColor: Color(0xff313737),
   useMaterial3: false,
   cardTheme: CardTheme(color: Color(0xff464f4f)),
